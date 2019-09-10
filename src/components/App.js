@@ -14,7 +14,7 @@ function App() {
     <div className="App">
       <h1>My Notes</h1>
 
-      <Create />
+      <Create notes={notes} setNotes={setNotes} />
 
       {notes.map((note, index) => (
         <div className="note" key={index}>

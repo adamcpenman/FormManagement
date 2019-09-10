@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 
 const Create = props => {
+  const initialNote = { title: "", body: "" };
   // const [title, setTitle] = useState("");
   // const [body, setBody] = useState("");
   const [newNote, setNewNote] = useState({
@@ -27,7 +28,21 @@ const Create = props => {
   const handleSubmit = event => {
     event.preventDefault();
     console.log(newNote);
+    props.setNotes([newNote, ...props.notes]);
+
+    if (!newNote.title || !newNote.body) {
+      alert("Please fill out form");
+    } else {
+      props.setNotes([newNote, ...props.notes]);
+    }
+    resetForm();
   };
+
+  const resetForm = () => {
+    // event.preventDefault();
+    setNewNote(initialNote);
+  };
+
   return (
     <form onSubmit={handleSubmit}>
       <input
@@ -35,9 +50,21 @@ const Create = props => {
         name="title"
         placeholder="Title"
         onChange={handleChange}
+        value={newNote.title}
       />
-      <textarea name="body" onChange={handleChange} />
+      {/* <input
+        type="date"
+        name="date"
+        placeholder="Title"
+        onChange={handleChange}
+      
+      /> */}
+      <textarea name="body" onChange={handleChange} value={newNote.body} />
       <button type="submit">Submit</button>
+      <button type="button" onClick={resetForm}>
+        {" "}
+        Reset
+      </button>
     </form>
   );
 };
