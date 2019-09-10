@@ -1,15 +1,25 @@
 import React, { useState } from "react";
 
 const Create = props => {
-  const [title, setTitle] = useState();
+  const [title, setTitle] = useState("");
+  const [body, setBody] = useState("");
   const handleTextChange = event => {
     setTitle(event.target.value);
   };
+
+  const handleBodyChange = event => {
+    setBody(event.target.value);
+  };
+
+  const handleSubmit = event => {
+    event.preventDefault();
+    console.log("form submitted");
+  };
   return (
-    <form>
-      Title: {title}
+    <form onSubmit={handleSubmit}>
       <input type="text" onChange={handleTextChange} />
-      <button>Submit</button>
+      <textarea onChange={handleBodyChange} />
+      <button type="submit">Submit</button>
     </form>
   );
 };
