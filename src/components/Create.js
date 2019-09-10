@@ -1,9 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 
 const Create = props => {
+  const [title, setTitle] = useState();
+  const handleTextChange = event => {
+    setTitle(event.target.value);
+  };
   return (
     <form>
-      <input type="text" />
+      Title: {title}
+      <input type="text" onChange={handleTextChange} />
       <button>Submit</button>
     </form>
   );
